@@ -27,6 +27,7 @@ class AppBody extends StatefulWidget {
 class _AppBodyState extends State<AppBody> {
   String year = "";
   late ConfettiController _controllerCenter;
+  final dateController = TextEditingController();
 
   @override
   void initState() {
@@ -125,10 +126,12 @@ class _AppBodyState extends State<AppBody> {
                   width: 200,
                   height: 200,
                   child: DateTimePicker(
+                    type: DateTimePickerType.date,
+                    controller: dateController,
+                    dateHintText: "Your birth date",
                     icon: const Icon(Icons.baby_changing_station),
-                    initialValue: '',
-                    firstDate: DateTime(2000),
-                    lastDate: DateTime(2100),
+                    firstDate: DateTime(1900),
+                    lastDate: DateTime(2025),
                     dateLabelText: 'Date',
                     onChanged: (val) => calculateBirthday(val),
                     validator: (val) {
@@ -139,7 +142,7 @@ class _AppBodyState extends State<AppBody> {
                 ),
                 Text(
                   year,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.blue,
                       fontSize: 14,
                       fontWeight: FontWeight.bold),
